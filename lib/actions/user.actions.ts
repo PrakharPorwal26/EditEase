@@ -15,6 +15,7 @@ export async function createUser(user: CreateUserParams) {
 
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
+    console.error("Error creating user:", error);
     handleError(error);
   }
 }
@@ -30,6 +31,7 @@ export async function getUserById(userId: string) {
 
     return JSON.parse(JSON.stringify(user));
   } catch (error) {
+    console.error("Error getting user by ID:", error);
     handleError(error);
   }
 }
@@ -47,6 +49,7 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
     
     return JSON.parse(JSON.stringify(updatedUser));
   } catch (error) {
+    console.error("Error updating user:", error);
     handleError(error);
   }
 }
@@ -69,6 +72,7 @@ export async function deleteUser(clerkId: string) {
 
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
   } catch (error) {
+    console.error("Error deleting user:", error);
     handleError(error);
   }
 }
@@ -88,6 +92,7 @@ export async function updateCredits(userId: string, creditFee: number) {
 
     return JSON.parse(JSON.stringify(updatedUserCredits));
   } catch (error) {
+    console.error("Error updating user credits:", error);
     handleError(error);
   }
 }

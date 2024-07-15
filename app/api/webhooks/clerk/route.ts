@@ -60,18 +60,18 @@ export async function POST(req: Request) {
 
     switch (eventType) {
       case "user.created":
-        const { email_addresses, image_url, first_name, last_name, username } = evt.data;
-
-        const newUser = {
-          clerkId: id,
-          email: email_addresses[0]?.email_address || "",
-          username: username || "",
-          firstName: first_name || "",
-          lastName: last_name || "",
-          photo: image_url || "",
-        };
-
         try {
+          const { email_addresses, image_url, first_name, last_name, username } = evt.data;
+
+          const newUser = {
+            clerkId: id,
+            email: email_addresses[0]?.email_address || "",
+            username: username || "",
+            firstName: first_name || "",
+            lastName: last_name || "",
+            photo: image_url || "",
+          };
+
           const createdUser = await createUser(newUser);
           console.log("User created:", createdUser);
           if (createdUser) {
@@ -86,14 +86,14 @@ export async function POST(req: Request) {
         }
 
       case "user.updated":
-        const updateUserParams = {
-          firstName: evt.data.first_name || "",
-          lastName: evt.data.last_name || "",
-          username: evt.data.username || "",
-          photo: evt.data.image_url || "",
-        };
-
         try {
+          const updateUserParams = {
+            firstName: evt.data.first_name || "",
+            lastName: evt.data.last_name || "",
+            username: evt.data.username || "",
+            photo: evt.data.image_url || "",
+          };
+
           const updatedUser = await updateUser(id, updateUserParams);
           console.log("User updated:", updatedUser);
           return NextResponse.json({ message: "OK", user: updatedUser });
