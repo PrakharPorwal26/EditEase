@@ -8,8 +8,10 @@ import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
 import { connectToDatabase } from "@/lib/database/mongoose";
 
 export async function POST(req: Request) {
+  console.log("Webhook received");
   try {
     await connectToDatabase();
+    console.log("Database connected");
 
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
